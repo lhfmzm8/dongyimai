@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+             http://www.springframework.org/schema/beans/spring-beans.xsd
+             http://www.springframework.org/schema/security
+             http://www.springframework.org/schema/security/spring-security.xsd">
+    <!--配置忽略规则-->
+    <http pattern="/favicon.ico" security="none"/>
+    <http pattern="/login.html" security="none"/>
+    <http pattern="/change.html" security="none"/>
+    <http pattern="/css/**" security="none"/>
+    <http pattern="/js/**" security="none"/>
+    <http pattern="/plugins/**" security="none"/>
+    <http pattern="/img/**" security="none"/>
+    <!--配置拦截规则-->
+    <http use-expressions="false">
+        <!--拦截地址以及需要的权限-->
+        <!--use-expressions:指定是否使用表达式 26.2 Web Security Expressions-->
+        <!--如果true：则access属性必须设置表达式：如access="hasRole('admin') and hasIpAddress('192.168.1.0/24')"-->
+        <!--如果是false:则access必须使用"ROLE_"作为前缀，参见44.3.3 What does "ROLE_" mean and why do I need it on my role names?
+        The most common voter is the RoleVoter which by default votes whenever it finds an attribute with the "ROLE_" prefix.
+        -->
+        <intercept-url pattern="/**" access="ROLE_ADMIN"/>
+        <!--如果不具备该角色，则跳转到登录页-->
+        <form-login login-page="/change.html" authentication-failure-url="/change.html"
+                    default-target-url="/admin/index.html" always-use-default-target="true"/>
+        <!-- 关闭跨站攻击校验-->
+        <csrf disabled="true"/>
+        <!--开启框架验证，子页面具有和父页面相同的验证规则-->
+        <headers>
+            <!--SAMEORIGIN：frame页面的地址只能为同源域名下的页面-->
+            <frame-options policy="SAMEORIGIN"/>
+        </headers>
+        <!--注销，自动创建地址/logout用于注销-->
+        <logout/>
+    </http>
+    <!--配置认证管理器-->
+    <authentication-manager>
+        <authentication-provider>
+            <user-service>
+                <!--  必须以ROLE_开头-->
+                <user name="admin" password="123456" authorities="ROLE_ADMIN"/>
+            </user-service>
+        </authentication-provider>
+    </authentication-manager>
+
+</beans:beans>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.liuhengfei.mapper.TbSpecificationMapper">
+    <resultMap id="BaseResultMap" type="org.example.liuhengfei.pojo.TbSpecification">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="spec_name" jdbcType="VARCHAR" property="specName"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, spec_name
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_specification
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <select id="selectByItems" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_specification
+        <where>
+            <if test="specName != null and specName !=''">
+                spec_name=#{specName,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+    <select id="selectOptions" resultType="java.util.Map">
+        select id, spec_name text from tb_specification
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.util.ArrayList">
+        delete from tb_specification where id in
+        <foreach collection="array" item="id" open="(" separator="," close=")">
+            #{id,jdbcType=BIGINT}
+        </foreach>
+    </delete>
+    <insert id="insert" parameterType="org.example.liuhengfei.pojo.TbSpecification">
+        insert into tb_specification (id, spec_name)
+        values (#{id,jdbcType=BIGINT}, #{specName,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="org.example.liuhengfei.pojo.TbSpecification" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into tb_specification
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="specName != null">
+                spec_name,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="specName != null">
+                #{specName,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="org.example.liuhengfei.pojo.TbSpecification">
+        update tb_specification
+        <set>
+            <if test="specName != null">
+                spec_name = #{specName,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="org.example.liuhengfei.pojo.TbSpecification">
+    update tb_specification
+    set spec_name = #{specName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

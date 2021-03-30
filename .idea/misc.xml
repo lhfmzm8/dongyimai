@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/dongyimai-Listener" />
+    <file type="web" url="file://$PROJECT_DIR$/dongyimai-manager-web" />
+    <file type="web" url="file://$PROJECT_DIR$/dongyimai-portal-web" />
+    <file type="web" url="file://$PROJECT_DIR$/dongyimai-search-service" />
+    <file type="web" url="file://$PROJECT_DIR$/dongyimai-search-web" />
+    <file type="web" url="file://$PROJECT_DIR$/dongyimai-seller-web" />
+    <file type="web" url="file://$PROJECT_DIR$/dongyimai-service" />
+    <file type="web" url="file://$PROJECT_DIR$/dongyimai-user-web" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/dongyimai-generator/pom.xml" />
+        <option value="$PROJECT_DIR$/dongyimai-makecode/pom.xml" />
+      </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/dongyimai-pay/pom.xml" />
+        <option value="$PROJECT_DIR$/dongyimai-portal-web/pom.xml" />
+        <option value="$PROJECT_DIR$/dongyimai-search-interface/pom.xml" />
+        <option value="$PROJECT_DIR$/dongyimai-search-service/pom.xml" />
+        <option value="$PROJECT_DIR$/dongyimai-search-web/pom.xml" />
+        <option value="$PROJECT_DIR$/dongyimai-solr-util/pom.xml" />
+        <option value="$PROJECT_DIR$/dongyimai-user-interface/pom.xml" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
+</project>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/dongyimai-Listener/dongyimai-Listener.iml" filepath="$PROJECT_DIR$/dongyimai-Listener/dongyimai-Listener.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dongyimai-common/dongyimai-common.iml" filepath="$PROJECT_DIR$/dongyimai-common/dongyimai-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dongyimai-dao/dongyimai-dao.iml" filepath="$PROJECT_DIR$/dongyimai-dao/dongyimai-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dongyimai-generator/dongyimai-generator.iml" filepath="$PROJECT_DIR$/dongyimai-generator/dongyimai-generator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dongyimai-interface/dongyimai-interface.iml" filepath="$PROJECT_DIR$/dongyimai-interface/dongyimai-interface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dongyimai-makecode/dongyimai-makecode.iml" filepath="$PROJECT_DIR$/dongyimai-makecode/dongyimai-makecode.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dongyimai-manager-web/dongyimai-manager-web.iml" filepath="$PROJECT_DIR$/dongyimai-manager-web/dongyimai-manager-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dongyimai-parent.iml" filepath="$PROJECT_DIR$/dongyimai-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dongyimai-pojo/dongyimai-pojo.iml" filepath="$PROJECT_DIR$/dongyimai-pojo/dongyimai-pojo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dongyimai-seller-web/dongyimai-seller-web.iml" filepath="$PROJECT_DIR$/dongyimai-seller-web/dongyimai-seller-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dongyimai-service/dongyimai-service.iml" filepath="$PROJECT_DIR$/dongyimai-service/dongyimai-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dongyimai-user-web/dongyimai-user-web.iml" filepath="$PROJECT_DIR$/dongyimai-user-web/dongyimai-user-web.iml" />
+    </modules>
+  </component>
+</project>

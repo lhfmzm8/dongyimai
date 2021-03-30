@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="dongyimai-manager-web:war">
+    <output-path>$PROJECT_DIR$/dongyimai-manager-web/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>dongyimai-manager-web</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="dongyimai-manager-web-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="dongyimai-manager-web:war exploded" />
+    </root>
+  </artifact>
+</component>

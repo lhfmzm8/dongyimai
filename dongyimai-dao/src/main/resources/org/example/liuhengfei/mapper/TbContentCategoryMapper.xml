@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.liuhengfei.mapper.TbContentCategoryMapper">
+  <resultMap id="BaseResultMap" type="org.example.liuhengfei.pojo.TbContentCategory">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_content_category
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectByItems" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from tb_content_category
+    <where>
+      <if test="name != null and name !=''">
+        and name=#{name,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.util.Arrays">
+    delete from tb_content_category where id in
+    <foreach collection="array" item="id" open="(" separator="," close=")">
+      #{id,jdbcType=BIGINT}
+    </foreach>
+  </delete>
+  <insert id="insert" parameterType="org.example.liuhengfei.pojo.TbContentCategory">
+    insert into tb_content_category (id, name)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.example.liuhengfei.pojo.TbContentCategory">
+    insert into tb_content_category
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.example.liuhengfei.pojo.TbContentCategory">
+    update tb_content_category
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.example.liuhengfei.pojo.TbContentCategory">
+    update tb_content_category
+    set name = #{name,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

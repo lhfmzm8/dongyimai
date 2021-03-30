@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!--加载配置文件-->
+
+    <!-- context：一组环境
+        id：必选，唯一标识符，用于在生成错误时提示
+        defaultModelType：指定生成 JavaBean 的模式
+            conditional：默认，类似于层次模型，表只包含一个字段时不会生成单独的类，该字段将合并到基本记录类中。
+            flat：所有字段生成在一个 JavaBean 中
+            hierarchical：主键列会生成主键类，Blob 列也单独生成一个类，再其余字段一个类，类之间存在适当的继承关系。
+        targetRuntime:
+            MyBatis3：默认的值，生成基于 MyBatis3.x 以上版本的内容，包括XXXBySample
+            MyBatis3Simple：类似 MyBatis3，不生成 XXXBySample
+            MyBatis3DynamicSql、Ibatis2Java2、Ibatis2Java5
+        introspectedColumnImpl：值为类的全限定名，用于扩展 MBG -->
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <!-- 插件，让实体类实现序列化接口 -->
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+
+        <commentGenerator>
+            <!-- 指定 MBG 是否去除生成代码中的注释 -->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <!-- 指定数据库连接的属性，MBG 使用 JDBC 的 DatabaseMetaData 类来发现配置中指定表的属性， 每个 context 元素都需要一个 connectionFactory 或 jdbcConnection 元素 -->
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/prometion?serverTimezone=UTC&amp;allowMultiQueries=true"
+                        userId="root"
+                        password="20090713ft">
+        </jdbcConnection>
+
+        <!-- javaTypeResolver：处理数据库中的类型到 Java 中的类型，默认使用 org.mybatis.generator.internal.types.JavaTypeResolverDefaultImpl
+                type：指定用户提供的 Java Type Resolver。该类必须实现 org.mybatis.generator.api.JavaTypeResolver 接口，并必须有公共默认构造函数。可写 DEFAULT-->
+        <javaTypeResolver>
+            <!-- forceBigDecimals：MBG 是否强制对 DECIMAL 和 NUMERIC 字段使用 java.math.BigDecimal，而不是在可能时替换整数类型
+                    true：如果数据库列的类型为 DECIMAL 或 NUMERIC，则 Java 类型解析程序将始终使用 java.math.BigDecimal
+                    false：默认，
+                        scale > 0 或 length > 18 使用 BigDecimal
+                        scale = 0 且 length [10,18] 使用 Long
+                        scale = 0 且 length [5,9] 使用 Integer
+                        scale = 0 且 length < 5 使用 Short -->
+            <property name="forceBigDecimals" value="false"/>
+            <!-- useJSR310Types：指定 MyBatis Generator 是否应强制在 DATE，TIME 和 TIMESTAMP 字段中使用 JSR-310 数据类型，而不是使用 java.util.Date
+                    true：则类型将按如下方式解析：
+                        DATE    java.time.LocalDate
+                        TIME    java.time.LocalTime
+                        TIMESTAMP    java.time.LocalDateTime
+                注意：类型解析器将始终解析以下JSR-310类型，无论此属性的值如何：
+                    TIME_WITH_TIMEZONE    java.time.OffsetTime
+                    TIMESTAMP_WITH_TIMEZONE    java.time.OffsetDateTime -->
+
+        </javaTypeResolver>
+
+        <!-- javaModelGenerator：Java模型生成器，此元素是 context 元素的必需子元素，负责：1，key类（见context的defaultModelType）；2，java类；3，查询类
+            targetPackage：生成的类将被放置的包，真实的包受 enableSubPackages 属性控制
+            targetProject：目标项目，指定一个存在的本地文件系统目录，生成的内容会放到指定目录中，如果目录不存在，MBG 不会自动建目录 -->
+        <javaModelGenerator targetPackage="org.example.liuhengfei.pojo"
+                            targetProject="D:\WorkSpace\Idea\dongyimai-parent\dongyimai-pojo\src\main\java">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false"/>
+            <!-- 从数据库返回的值被清理前后的空格 -->
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!-- targetProject:mapper映射文件生成的位置 -->
+        <sqlMapGenerator targetPackage="org.example.liuhengfei.mapper"
+                         targetProject="D:\WorkSpace\Idea\dongyimai-parent\dongyimai-dao\src\main\resources">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+        <!-- targetPackage：mapper接口生成的位置 -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="org.example.liuhengfei.mapper"
+                             targetProject="D:\WorkSpace\Idea\dongyimai-parent\dongyimai-dao\src\main\java">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+
+        <!-- 指定要逆向分析哪些表，根据表创建 javaBean, 可用 % 匹配所有表 -->
+
+        <table tableName="tb_address" enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+        <table tableName="tb_areas" enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+        <table tableName="tb_brand" enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+        <table tableName="tb_cities" enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+        <table tableName="tb_content" enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+        <table tableName="tb_content_category" enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+        <table tableName="tb_freight_template" enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+        <table tableName="tb_goods" enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+        <table tableName="tb_goods_desc" enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+        <table tableName="tb_item" enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+        <table tableName="tb_item_cat" enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+        <table tableName="tb_item_spec_option" enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+        <table tableName="tb_order" enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+        <table tableName="tb_order_item" enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+        <table tableName="tb_pay_log" enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+        <table tableName="tb_provinces" enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+        <table tableName="tb_seller" enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+        <table tableName="tb_specification" enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+        <table tableName="tb_specification_option" enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+        <table tableName="tb_type_template" enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+        <table tableName="tb_user" enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+        <table tableName="tb_seckill_goods" enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+        <table tableName="tb_seckill_order" enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"/>
+    </context>
+</generatorConfiguration>

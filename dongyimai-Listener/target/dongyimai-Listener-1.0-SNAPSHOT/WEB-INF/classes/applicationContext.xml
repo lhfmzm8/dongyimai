@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--  freemarker配置  -->
+    <bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer" id="freeMarkerConfigurer">
+        <property name="templateLoaderPath" value="${freemarker.ftlPath}"/>
+        <property name="defaultEncoding" value="utf-8"/>
+    </bean>
+
+    <!--  activeMQ配置  -->
+    <bean class="org.apache.activemq.ActiveMQConnectionFactory" id="activeMQConnectionFactory">
+        <property name="brokerURL" value="${activeMQ.brokerURL}"/>
+    </bean>
+    <!--  spring调用工厂  -->
+    <bean class="org.springframework.jms.connection.SingleConnectionFactory" id="singleConnectionFactory">
+        <property name="targetConnectionFactory" ref="activeMQConnectionFactory"/>
+    </bean>
+    <!--  队列  -->
+    <bean class="org.apache.activemq.command.ActiveMQQueue" id="solrMQQueue">
+        <property name="physicalName" value="updateSolr"/>
+    </bean>
+    <bean class="org.apache.activemq.command.ActiveMQQueue" id="freeMarkerMQQueue">
+        <property name="physicalName" value="updateHtml"/>
+    </bean>
+    <bean class="org.apache.activemq.command.ActiveMQQueue" id="smsMQQueue">
+        <property name="physicalName" value="sendSMS"/>
+    </bean>
+    <!-- 监听器  -->
+    <bean class="org.example.liuhengfei.listener.SolrMessageListener" id="solrMessageListener"/>
+    <bean class="org.example.liuhengfei.listener.FreeMarkerMessageListener" id="freeMarkerMessageListener"/>
+    <bean class="org.example.liuhengfei.listener.SMSMessageListener" id="smsMessageListener"/>
+    <!-- 监听器容器  -->
+    <bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+        <property name="connectionFactory" ref="singleConnectionFactory"/>
+        <property name="destination" ref="solrMQQueue"/>
+        <property name="messageListener" ref="solrMessageListener"/>
+    </bean>
+    <bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+        <property name="connectionFactory" ref="singleConnectionFactory"/>
+        <property name="destination" ref="freeMarkerMQQueue"/>
+        <property name="messageListener" ref="freeMarkerMessageListener"/>
+    </bean>
+    <bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+        <property name="connectionFactory" ref="singleConnectionFactory"/>
+        <property name="destination" ref="smsMQQueue"/>
+        <property name="messageListener" ref="smsMessageListener"/>
+    </bean>
+
+</beans>
